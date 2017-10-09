@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="578" height="200"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById("canvas");
+			var context = oCanvas.getContext("2d");
+			
+			var x = oCanvas.width/2;
+			var y = oCanvas.height/2;
+			var radius = 75;  //定义半径
+			var startAngle = 1.1*Math.PI;  //起始点
+			var endAngle = 1.9*Math.PI;  //终点
+			var counterClockwise = false;  //统计步数  布尔值   顺时针false   逆时针true
+			
+			context.beginPath();
+			context.arc(x,y,radius,startAngle,endAngle,counterClockwise);  //画弧线，参数：圆心点X，Y，半径r，弧度起始值X，Y，顺时针还是逆时针
+			
+			context.strokeStyle = "#ff0";
+			context.lineWidth = 5;
+			context.stroke();
+		</script>
+	</body>
+</html>

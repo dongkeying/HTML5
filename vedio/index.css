@@ -1,0 +1,269 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #666;
+}
+
+i {
+  font-style: normal;
+}
+
+.clear {
+  zoom: 1;
+}
+
+.clear::after {
+  content: "";
+  width: 0;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'iconfont';
+  src: url("font/iconfont.eot");
+  src: url("font/iconfont.eot?#iefix") format("embedded-opentype"), url("font/iconfont.woff") format("woff"), url("font/iconfont.ttf") format("truetype");
+}
+.iconfont {
+  font-family: "iconfont";
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+.iconfont:hover {
+  color: #ff593d;
+}
+
+.now {
+  width: 2%;
+}
+
+.wrap {
+  width: 60%;
+  height: 70%;
+  background-color: #000;
+  margin: 70px auto;
+  padding: 50px 0;
+  position: relative;
+}
+.wrap .pause {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -30px;
+  margin-top: -30px;
+  display: none;
+}
+.wrap .pause i {
+  font-size: 60px;
+  color: #666;
+}
+.wrap #video {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+.wrap .nav {
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.wrap .nav .progress {
+  width: 100%;
+  height: 4px;
+  background-color: #838383;
+  cursor: pointer;
+}
+.wrap .nav .progress .now {
+  height: 100%;
+  background-color: #ec5d4f;
+  position: relative;
+}
+.wrap .nav .progress .now span {
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  right: -5px;
+  top: -7px;
+  background-color: #f9544e;
+  border-radius: 50%;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.wrap .nav .controls {
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+}
+.wrap .nav .controls .play,
+.wrap .nav .controls .next,
+.wrap .nav .controls .voice,
+.wrap .nav .controls .allscreen {
+  width: 22px;
+  height: 22px;
+  margin-right: 22px;
+}
+.wrap .nav .controls .left {
+  width: 30%;
+  float: left;
+  height: 100%;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+.wrap .nav .controls .left div {
+  float: left;
+}
+.wrap .nav .controls .left .next i {
+  font-size: 16px;
+  color: #656565;
+}
+.wrap .nav .controls .left .playtime {
+  color: #fff;
+  font-size: 14px;
+  line-height: 24px;
+}
+.wrap .nav .controls .right {
+  width: 35%;
+  float: right;
+  height: 100%;
+  color: #fff;
+}
+.wrap .nav .controls .right > div {
+  float: right;
+  position: relative;
+}
+.wrap .nav .controls .right .viewLine {
+  width: 42px;
+  height: 122px;
+  position: absolute;
+  bottom: 28px;
+  left: -13px;
+  background: #26252d;
+}
+.wrap .nav .controls .right .viewLine::after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -8px;
+  left: 16px;
+  border-top: 8px solid #26252d;
+  border-left: 6px transparent solid;
+  border-right: 6px transparent solid;
+}
+.wrap .nav .controls .right .voice .viewLine {
+  display: none;
+}
+.wrap .nav .controls .right .voice .wrapLine {
+  width: 4px;
+  height: 90px;
+  background: #414144;
+  margin: 17px auto;
+  position: relative;
+}
+.wrap .nav .controls .right .voice .wrapLine .progressLine {
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #ff6230;
+}
+.wrap .nav .controls .right .voice .wrapLine .progressLine span {
+  width: 10px;
+  height: 10px;
+  background: #ff5246;
+  border-radius: 50%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: -12px;
+  left: -6px;
+  cursor: pointer;
+}
+.wrap .nav .controls .right .speed,
+.wrap .nav .controls .right .definition {
+  margin-right: 22px;
+  border: 2px solid #7d8182;
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-top: -4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.wrap .nav .controls .right .speed:hover,
+.wrap .nav .controls .right .definition:hover {
+  background: #ff593d;
+  border-color: #ff593d;
+}
+.wrap .nav .controls .right .speed .viewLine {
+  width: 162px;
+  height: 67px;
+  left: -60px;
+  display: none;
+}
+.wrap .nav .controls .right .speed .viewLine::after {
+  left: 80px;
+}
+.wrap .nav .controls .right .speed .viewLine p {
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+  text-align: center;
+}
+.wrap .nav .controls .right .speed .viewLine i {
+  font-size: 12px;
+  display: inline-block;
+  width: 32px;
+  height: 24px;
+  line-height: 24px;
+  margin-left: 18px;
+  text-align: center;
+  border-radius: 7px;
+}
+.wrap .nav .controls .right .speed .viewLine i:hover {
+  background: #19181a;
+}
+.wrap .nav .controls .right .speed .viewLine i.active {
+  color: #ff593d;
+}
+.wrap .nav .controls .right .definition .viewLine {
+  width: 104px;
+  height: 138px;
+  left: -28px;
+  padding: 3px 15px 0;
+  box-sizing: border-box;
+  display: none;
+}
+.wrap .nav .controls .right .definition .viewLine::after {
+  left: 48px;
+}
+.wrap .nav .controls .right .definition .viewLine p {
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 12px;
+  border-bottom: 1px solid #2d2c32;
+}
+.wrap .nav .controls .right .definition .viewLine p.active {
+  color: #ff593d;
+}
+.wrap .nav .controls .right .allscreen {
+  margin-top: -6px;
+}
+.wrap .nav .controls .right .allscreen i {
+  font-size: 28px;
+}

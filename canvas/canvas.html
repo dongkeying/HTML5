@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="578" height="200"></canvas>
+<script>
+	var oCanvas = document.getElementById("canvas");
+	var context = oCanvas.getContext("2d");
+	context.clearRect(0,0,200,200);  //清空一片区域为透明
+	context.fillStyle = "#ddd";  //设置颜色
+	context.fillRect(10,10,130,130);  //填充颜色
+	var path = new Path2D();			
+	
+	context.beginPath();  //开始配置画线路径
+	context.moveTo(100,100);  //起始坐标
+	context.lineTo(500,500);  //终止坐标
+	context.lineWidth = 5;   //定义线的宽度(没有单位)
+	context.strokeStyle = "red";  //定义线条颜色
+	context.fillStyle = "green";
+	context.fill();	//填充颜色，默认填充黑色
+	context.lineCap = "round";  //定义线的两侧头部为圆角
+					二参:square  方形
+					三参:butt  默认值
+	context.lineJoin = "miter";	//定义两个线条的连接处样式   默认值：尖角
+					二参:round; //   圆角
+					三参:bevel;  //  平角
+					
+	//矩形			
+	context.rect(起点X,Y,矩形W,H);	//绘制矩形	
+	context.stroke();
+	context.strokeRect(起点X,Y,矩形W,H);	//绘制矩形	，相当于上面两句
+	context.fillRect(起点X,Y,矩形W,H);  //绘制矩形，并填充颜色
+	//清除矩形
+	context.clearRect(起点X,Y,矩形W,H);  //清除画布区域内绘制的所有内容
+	
+	//画弧线，参数：圆心点X，Y，半径r，弧度起始值X，Y，顺时针还是逆时针
+	context.arc(x,y,radius,startAngle,endAngle,counterClockwise);  
+	context.arcTo(控制点坐标X,Y,终点坐标X,Y,半径radius);
+	context.quadraticCurveTo();   //二次曲线  控制点X，Y，终点X，Y
+	context.bezierCurveTo();	//贝塞尔曲线  控制点1X,Y，控制点2X,Y，终点X,Y
+	context.stroke();  //绘制画布
+	
+	context.closePath();  //抬起画笔
+	context是一个无状态的对象,不抬起画笔,就会一直继承前面的属性
+	
+	//---------------------------------------------------------------------------------
+	//填充文字   30pt  绝对单位  px 描述一个点的大小，相对单位   12px = 9pt
+	context.font = "bold 20px '微软雅黑'";   //字体样式  font-style font-size font-family
+	context.textBaseline = "bottom";   //对齐方式  top  middle hanging悬挂  alphabetic基线对齐
+	context.textAlign = "left";        //居中方式   center  start=left  end = right文本结尾处对齐
+	context.strokeStyle = "red";
+	context.strokeText("Top-g",100,300);  //设置空心文字，  TOP-G是填充的文字内容
+	context.fillStyle = "blue";  //定义文字颜色
+	context.fillText("Top-g",100,300);  //设置实体填充文字，坐标X,Y
+	//文本折行
+	var metrics = context.measureText('Top-g');  //返回包含指定文本宽度的对象   返回一个对象{width: ;height: ;}
+	var textWidth = metrics.width;
+	
+	
+	//线性渐变   --绘制矩形渐变
+	//1 定义渐变颜色范围
+	var grd  = context.createLinearGradient(起始点X,Y,结束点X,Y);   //创建一个对象
+	context.rect(起始点X,Y,结束点X,Y);
+	grd.addColorStop(0,'#8ed6ff');  //起始点颜色
+	grd.addColorStop(1,'#004cb3');  //结束点颜色
+	
+	context.fillStyle = grd;
+	context.fill();
+	
+	//径向渐变
+	var grd  = context.createRadialGradient(圆心X,Y,半径,圆心点2X,Y,半径2);
+	context.rect(起始点X,Y,结束点X,Y);
+	grd.addColorStop(0,'#8ed6ff');  //起始点颜色
+	grd.addColorStop(1,'#004cb3');  //结束点颜色
+	
+	//绘制图片-- 填充	
+	var img = new Image();
+	img.src = "图片路径";
+	img.onload = function(){
+		var pattern = context.createPattern(img,'repeat');  //图片DOM，是否平铺
+		
+		context.rect(起始点X,Y,终点X,Y);
+		context.fillStyle = pattern;
+		context.fill();
+	}
+	
+	//绘制图片--引入
+	var img = new Image();
+	img.src = "图片路径";
+	img.onload = function(){
+		//起始点坐标X,Y，img是需要绘制图片的DOM对象,
+		//width &height　可以省略，同时存在或者消失，不能只写一个Width,浏览器不能根据width自己缩放
+		context.drawImage(img,x,y,width,height);  
+	}
+	
+	//绘制图片--裁剪   crop概念 PPT抠图放图
+	//定义裁剪源: 坐标,宽高
+	var sourceX = 100;
+	var sourceY = 10;
+	var sourceWidth = 250;
+	var sourceHeight = 250;
+	
+	//定义目标位置的坐标  看代码6-4-image-loader
+	var destX = 
+	var destY = 
+	
+	var img = new Image();
+	img.src = "图片路径";
+	img.onload = function(){
+		context.drawImage(img,sourceX,sourceY,sourceWidth,sourceHeight,destX,destY,destWidth.destHeight);  
+	}
+	
+	//translate  变换
+	context.translate(x,y);  //X轴移动距离,Y轴移动距离
+	context.scale(x,y);  // X轴缩放系数，Y轴缩放系数
+		参数 -1,-1   倒影   scale 参数为负值
+	context.rotate(deg);  //旋转角度   弧度
+	...skew
+	
+	//canvas变换矩阵
+	context.transform(a,b,c,d,e,f);  //书写两个transform，后面不会覆盖前面
+	
+	//重置会原来初始的样子
+	context.setTransform(1,0,0,1,0,0);    //	参数为单位矩阵
+	
+	//状态栈--改变元素的颜色  （存储状态栈）    8-7案例
+	context.save();
+	context.save();  //开始存储状态栈
+	context.restore();  //释放状态栈   会释放距离他最近的save  （删除restore和save之所有的样式）
+	context.restore();
+</script>
+	</body>
+</html>

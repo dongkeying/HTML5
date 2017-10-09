@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>H5音乐播放器</title>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+	</head>
+	<body>
+		<div class="mask"></div>
+		<div class="mask-color"></div>
+		<div class="content">
+			<div class="player_bd">
+				<!--默认模式-->
+				<div class="player_style_normal">
+					<div class="mod_songlist-toolbar clear">
+						<a href="javascript:;" class="mod_btn_like">
+							<i></i>收藏
+						</a>
+						<a href="javascript:;" class="mod_btn_add">
+							<i></i>添加到
+						</a>
+						<a href="javascript:;" class="mod_btn_download">
+							<i></i>下载
+						</a>
+						<a href="javascript:;" class="mod_btn_delete">
+							<i></i>删除
+						</a>
+						<a href="javascript:;" class="mod_btn_clearList">
+							<i></i>清空列表
+						</a>
+					</div>
+					<div class="songlist">
+						<!--顶部导航栏-->
+						<ul class="songlist_header clear">
+							<li class="songlist-edit-sprite">
+								<input type="checkbox" class="sontlist-checkbox" />
+							</li>
+							<li class="songlist-name">歌曲</li>
+							<li class="songlist-author">歌手</li>
+							<li class="songlist-time">时长</li>
+						</ul>
+						<i class="line"></i>
+						<ul class="songlist-list" id="song_box">
+							<li>
+								<div class="edit edit-checked">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number playing">1</div>
+								<div class="songname">
+									<span>消愁(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">03:00</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">2</div>
+								<div class="songname">
+									<span>二零三(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">03:08</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">3</div>
+								<div class="songname">
+									<span>芬芳一生(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">04:00</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">4</div>
+								<div class="songname">
+									<span>借(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">03:35</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">5</div>
+								<div class="songname">
+									<span>一程山路(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">05:36</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">6</div>
+								<div class="songname">
+									<span>等(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">04:53</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+							<li>
+								<div class="edit">
+									<input type="checkbox" class="songlist-checkbox" />
+								</div>
+								<div class="number">7</div>
+								<div class="songname">
+									<span>像我这样的人(Live)</span>
+									<div class="mod-list-menu">
+										<a href="javascript:;" class="play"></a>
+										<a href="javascript:;" class="add"></a>
+										<a href="javascript:;" class="share"></a>
+									</div>
+								</div>
+								<div class="author">毛不易</div>
+								<div class="total-time">02:52</div>
+								<a href="javascript:;" class="delete-song" title="删除"></a>
+							</li>
+							<i class="line"></i>
+						</ul>
+					</div>
+					<div class="mod_song_info">
+						<div class="song-info-info">
+							<img src="img/cd_tou.png" class="disc"/>
+							<a href="javascript:;">
+								<img src="img/maomao1.jpg" class="rotate"/>
+							</a>
+							<p class="msong-name">歌曲名：消愁</p>
+							<p class="author-name">歌手名：毛不易</p>
+						</div>
+						<div class="song-lyric">
+							<div class="js_lyric_box">
+								<div class="allric"><!--这里是动态生成的歌词--></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--纯净模式-->
+				
+			</div>
+			<!--底部导航栏-->
+			<div class="player_ft clear" id="opbanner">
+				<a href="javascript:;" class="btn_prev"></a>
+				<!--点击按钮播放之后，添加class=btn-pause-->
+				<a href="javascript:;" class="btn_play btn-pause"></a>
+				<a href="javascript:;" class="btn_next"></a>
+				<div class="play clear">
+					<div class="play-text">
+						<a href="javascript:;" class="song-name">消愁(Live)</a>
+						-
+						<a href="javascript:;" class="song-singer">毛不易</a>
+					</div>
+					<div class="player-time">
+						<a href="javascript:;" class="nowTime">00:00</a>
+						/
+						<a href="javascript" class="endTime">03:00</a>
+					</div>
+					<div class="player-progress">
+						<div class="player-nowprog">
+							<i></i>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:;" class="btn-Loop-single" id="play-mod" title="单曲循环"></a>
+				<a href="javascript:;" class="btn-great"></a>
+				<a href="javascript:;" class="btn-download"></a>
+				<a href="javascript:;" class="btn-onOff"></a>
+				<div class="btn-voice">
+					<a href="javascript:;" class="btn-big-voice"></a>
+					<div class="player-progress-inner">
+						<div class="now-pro">
+							<i></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<audio height="0" width="0" src="res/消愁(Live).m4a" id="audiores" autoplay="autoplay">
+			<!--<source src="res/二零三(Live).m4a"/>-->
+		</audio>
+		<script src="js/draggable.js" type="text/javascript" charset="utf-8"></script>
+		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

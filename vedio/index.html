@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>视频播放器</title>
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+			<div class="pause"><i class="iconfont">&#xe66d;</i></div>
+			<video src="res/this.mp4" id="video" loop="loop"></video>
+			<div class="nav">
+				<!--进度条-->
+				<div class="progress">
+					<div class="now">
+						<span></span>
+					</div>
+				</div>
+				<!--功能键-->
+				<div class="controls clear">
+					<div class="left clear">
+						<div class="play"><i class="iconfont">&#xe6c4;</i></div>
+						<div class="next"><i class="iconfont">&#xe6c3;</i></div>
+						<div class="playtime">
+							<span class="nowtime">00:00:00</span>
+							/
+							<span class="totaltime">00:17:00</span>
+						</div>
+					</div>
+					<div class="right clear">
+						<div class="allscreen"><i class="iconfont">&#xe6dd;</i></div>
+						<div class="definition mouse">
+							超清
+							<div class="viewLine">
+								<p>蓝光(1080P)</p>
+								<p class="active">超清(720P)</p>
+								<p>高清(480P)</p>
+								<p>标清(270P)</p>
+							</div>
+						</div>
+						<div class="speed mouse">
+							1.0X
+							<div class="viewLine">
+								<p>多倍速播放</p>
+								<i class="active">1.0X</i>
+								<i>1.5X</i>
+								<i>2.0X</i>
+							</div>
+						</div>
+						<div class="voice mouse">
+							<i class="iconfont">&#xe6b1;</i>
+							<div class="viewLine">
+								<div class="wrapLine">
+									<div class="progressLine">
+										<span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/draggable.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</html>

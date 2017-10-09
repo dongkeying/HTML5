@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			canvas{
+				background:#4d565d;
+				margin:0 auto;
+				display:block;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</body>
+	<script type="text/javascript">
+		var oCanvas = document.getElementById("canvas");
+		var ctx = oCanvas.getContext("2d");
+		
+		//初始化数据
+		var circleX = oCanvas.width/2;
+		var circleY = oCanvas.height/2;
+		var radius = 200;
+		var deg = Math.PI/180;
+		
+		drawWatch();
+		setInterval(drawWatch,1000);
+		function drawWatch(){
+			//清空画布clearRect()
+			ctx.clearRect(0,0,circleX*2,circleY*2);
+			getNowTime();
+			
+			//绘制指针
+			drawHour();
+			drawMin();
+			drawSec();
+			drawWeek();
+			
+			//开始绘制静态表
+			drawDial();
+			drawScale();
+			drawNum();
+			drawCircle();
+		}
+		
+		//获取当前时间
+		function getNowTime(){
+			var date = new Date();
+			var hour = date.getHours()%12;  //12小时制时间
+			var min = date.getMinutes();
+			var sec = date.getSeconds();
+			
+			hourDeg = 30*hour-90+min/2;      
+			//   为什么加min/2
+			//   因为：min=30时，hour需要加15deg,所以是min/2
+			minDeg = 6*min-90;
+			secDeg = 6*sec-90;   //-90为了矫正坐标系，arc的0是x轴，
+		}
+		
+		//绘制表盘
+		function drawDial(){
+			ctx.beginPath();
+			ctx.save();
+			
+			ctx.lineWidth="5";
+			ctx.strokeStyle="#cfcfcf";
+			ctx.arc(circleX,circleY,radius,0,2*Math.PI,false);
+			ctx.shadowBlur="15";
+			ctx.shadowColor="#33a0f5";
+			ctx.shadowOffsetX="1";
+			ctx.shadowOffsetY="1";
+			ctx.stroke();
+			
+			ctx.restore();
+			ctx.closePath();
+		}
+		
+		//绘制刻度
+		function drawScale(){
+			var length = 23;
+			ctx.save();
+			for(var i=0;i<12;i++){
+				ctx.beginPath();
+				if(i%3 == 0) {
+					length = 33;
+				}else{
+					length = 23;
+				}
+				ctx.lineWidth = "3";
+				ctx.lineCap = "round";
+				ctx.strokeStyle = "#28292b";
+				ctx.shadowBlur="15";
+				ctx.shadowColor="#33a0f5";
+				ctx.shadowOffsetX="1";
+				ctx.shadowOffsetY="1";
+				ctx.moveTo(circleX+(radius-13)*Math.sin(i*30*deg),circleY-(radius-13)*Math.cos(i*30*deg));
+				ctx.lineTo(circleX+(radius-length)*Math.sin(i*30*deg),circleY-(radius-length)*Math.cos(i*30*deg));
+				ctx.stroke();
+				ctx.closePath();
+			}
+			ctx.restore();
+		}
+		//绘制时钟圆心
+		function drawCircle(){
+			ctx.beginPath();
+			ctx.fillStyle = "#2aa5f5";
+			ctx.shadowBlur="15";
+			ctx.shadowColor="#000";
+			ctx.shadowOffsetX="1";
+			ctx.shadowOffsetY="1";
+			ctx.arc(circleX,circleY,6,0,2*Math.PI);
+			ctx.fill();
+			ctx.closePath();
+		}
+		
+		//绘制时针
+		function drawHour(){
+			ctx.save();
+			ctx.beginPath();
+			ctx.lineWidth = "6";
+			ctx.lineCap = "round";
+			ctx.strokeStyle = "#000";
+			ctx.shadowBlur="15";
+			ctx.shadowColor="#33a0f5";
+			ctx.shadowOffsetX="1";
+			ctx.shadowOffsetY="1";
+			ctx.moveTo(circleX,circleY);
+			//时针长度为2/5
+			ctx.lineTo(circleX+Math.cos(hourDeg*deg)*radius*2/5,circleY+Math.sin(hourDeg*deg)*radius*2/5);
+			ctx.stroke();
+			ctx.restore();
+			ctx.closePath();
+		}
+		//绘制分针
+		function drawMin(){
+			ctx.save();
+			ctx.beginPath();
+			ctx.lineWidth = "4";
+			ctx.lineCap = "round";
+			ctx.strokeStyle = "#000";
+			ctx.shadowBlur="15";
+			ctx.shadowColor="#33a0f5";
+			ctx.shadowOffsetX="1";
+			ctx.shadowOffsetY="1";
+			ctx.moveTo(circleX,circleY);
+			//时针长度为3/5
+			ctx.lineTo(circleX+Math.cos(minDeg*deg)*radius*3/5,circleY+Math.sin(minDeg*deg)*radius*3/5);
+			ctx.stroke();
+			ctx.restore();
+			ctx.closePath();
+		}
+		//绘制秒针
+		function drawSec(){
+			ctx.save();
+			ctx.beginPath();
+			ctx.lineWidth = "2";
+			ctx.lineCap = "round";
+			ctx.strokeStyle = "#2aa5f5";
+			ctx.shadowBlur="2";
+			ctx.shadowColor="#fff";
+			ctx.moveTo(circleX,circleY);
+			//时针长度为2/5
+			ctx.lineTo(circleX+Math.cos(secDeg*deg)*radius*4/5,circleY+Math.sin(secDeg*deg)*radius*4/5);
+			ctx.stroke();
+			ctx.restore();
+			ctx.closePath();
+		}
+		//显示数字
+		function drawNum(){
+			ctx.beginPath();
+			var nums = [12,1,2,3,4,5,6,7,8,9,10,11];
+			ctx.font = "17px '微软雅黑'";
+			ctx.fillStyle = "#fff";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			for(var i=0;i<nums.length;i++){
+				ctx.fillText(nums[i],circleX+(radius-48)*Math.sin(i*30*deg),circleY-(radius-48)*Math.cos(i*30*deg));
+			}
+			ctx.fill();
+			ctx.closePath();
+		}
+		
+		//显示周几
+		function drawWeek(){
+			ctx.beginPath();
+			var week = new Date().getDay();
+			var arr = ["一","二","三","四","五","六","日"];
+			week = arr[week-1];
+			ctx.font = "17px '微软雅黑'";
+			ctx.fillStyle = "#2aa5f5";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			ctx.fillText("星期"+week,circleX+55,circleY);
+			ctx.fill();
+			ctx.closePath();
+		}
+	</script>
+</html>

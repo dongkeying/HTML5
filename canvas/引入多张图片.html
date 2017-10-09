@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="1000" height="800"></canvas>
+		<script type="text/javascript">
+			var oCanvas = document.getElementById('canvas');
+			ctx = oCanvas.getContext("2d");
+			var arr = ["bigcat.gif","work.gif"];
+			
+			/*for(var i=0;i<arr.length;i++){
+				var img = new Image();
+				img.src = arr[i];
+				img.onload = function(){
+					var pattern = ctx.createPattern(img,'repeat');
+					ctx.rect(0,0,(i+1)*300,(i+1)*300);
+					ctx.fillStyle = pattern;
+				}
+				ctx.fill();
+			}*/
+			var img = new Image();
+			img.src = "bigcat.gif";
+			var img2 = new Image();
+			img2.src = "work.gif";
+			
+			img.onload = function(){
+				var pattern = ctx.createPattern(img,'no-repeat');  //图片DOM，是否平铺
+				
+				ctx.rect(0,0,200,200);
+				ctx.fillStyle = pattern;
+				ctx.fill();
+			}
+			ctx.beginPath();
+			ctx.moveTo(250,250);
+			img2.onload = function(){
+				var pattern2 = ctx.createPattern(img2,'no-repeat');  //图片DOM，是否平铺
+				
+				ctx.rect(250,250,500,500);
+				ctx.fillStyle = pattern2;
+				ctx.fill();
+			}
+			
+		</script>
+	</body>
+</html>
